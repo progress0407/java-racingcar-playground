@@ -8,16 +8,20 @@ public class StringAddCalculator {
         if (input == null || input.equals("")) {
             return 0;
         }
-        int result = getResult(input);
-        return result;
+        return getSum(input);
     }
 
-    private static int getResult(String input) {
+    private static int getSum(String input) {
 
         String replaceCharacter = getReplaceCharacter(input);
 
-        return Arrays.stream(input.split(replaceCharacter))
-                .mapToInt(Integer::parseInt).sum();
+        StringProcessor stringProcessor = new StringProcessor(input, replaceCharacter);
+
+        return stringProcessor
+                .getStrings()
+                .stream()
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 
     private static String getReplaceCharacter(String input) {

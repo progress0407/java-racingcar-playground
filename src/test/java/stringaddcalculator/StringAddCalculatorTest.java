@@ -3,6 +3,7 @@ package stringaddcalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class StringAddCalculatorTest {
 
@@ -23,8 +24,13 @@ public class StringAddCalculatorTest {
 
     @Test
     void splitAndSum_숫자예외() {
-        int result = StringAddCalculator.splitAndSum("-1");
-        assertThat(result).isEqualTo(-1);
+
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(()->{
+                    StringAddCalculator.splitAndSum("-1");
+                })
+                .withMessageMatching("1에서 9 사이의 숫자이어야 합니다.");
+
     }
 
     @Test
