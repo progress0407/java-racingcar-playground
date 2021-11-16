@@ -13,24 +13,12 @@ public class StringAddCalculator {
 
     private static int getSum(String input) {
 
-        String replaceCharacter = getReplaceCharacter(input);
-
-        StringProcessor stringProcessor = new StringProcessor(input, replaceCharacter);
+        StringProcessor stringProcessor = new StringProcessor(input);
 
         return stringProcessor
                 .getStrings()
                 .stream()
                 .mapToInt(Integer::parseInt)
                 .sum();
-    }
-
-    private static String getReplaceCharacter(String input) {
-        if (input.contains(",")) {
-            return ",";
-        }
-        if (input.contains(";")) {
-            return ";";
-        }
-        return "";
     }
 }

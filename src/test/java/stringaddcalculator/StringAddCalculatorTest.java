@@ -2,8 +2,11 @@ package stringaddcalculator;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.lang.System.out;
+import static org.assertj.core.api.Assertions.*;
 
 public class StringAddCalculatorTest {
 
@@ -26,7 +29,7 @@ public class StringAddCalculatorTest {
     void splitAndSum_숫자예외() {
 
         assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(()->{
+                .isThrownBy(() -> {
                     StringAddCalculator.splitAndSum("-1");
                 })
                 .withMessageMatching("1에서 9 사이의 숫자이어야 합니다.");
@@ -39,5 +42,22 @@ public class StringAddCalculatorTest {
         assertThat(result).isEqualTo(3);
     }
 
+    @Test
+    void splitAndSum_쉼표_또는_콜론구분자() {
+        int result = StringAddCalculator.splitAndSum("1,2;3");
+        assertThat(result).isEqualTo(6);
+    }
 
+    @Test
+    void splitAndSum_custom_구분자() {
+        int result = StringAddCalculator.splitAndSum("//;\n1;2;3");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void splitAndSum_negative() {
+        assertThatThrownBy(() -> {
+            StringAddCalculator.splitAndSum("-1,2,3");
+        }).isInstanceOf(RuntimeException.class);
+    }
 }
