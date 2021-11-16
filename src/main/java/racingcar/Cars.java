@@ -8,6 +8,10 @@ public class Cars {
 
     private List<Car> cars;
 
+    public Cars() {
+
+    }
+
     public Cars(String input) {
         cars = Arrays.stream(input.split(","))
                 .map(carName -> new Car(carName, 1))

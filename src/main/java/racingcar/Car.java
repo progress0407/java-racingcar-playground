@@ -3,7 +3,7 @@ package racingcar;
 import java.util.Random;
 
 public class Car {
-    private String name;
+    private final String name;
     private int movingCount;
 
     public Car(String name, int movingCount) {
@@ -34,10 +34,19 @@ public class Car {
 
     private boolean isMoving() {
         int randomNumber = getRandomNumber();
-        return randomNumber == 0;
+        return randomNumber == 1;
     }
 
     private int getRandomNumber() {
-        return new Random().nextInt(2);
+        int nextInt = new Random().nextInt(2);
+        return nextInt;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", movingCount=" + movingCount +
+                '}';
     }
 }
