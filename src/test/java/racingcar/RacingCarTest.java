@@ -8,13 +8,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RacingCarTest {
 
-    /**
-     * pobi,crong,honux
-     */
     @Test
     @DisplayName("자동차 생성 로직")
     void 자동차생성() {
-        Cars cars = new Cars("pobi,crong,honux");
+        Cars cars = new Cars("pobi,crong,honux", 5);
         int carsCount = cars.getCars().size();
         assertThat(carsCount).isEqualTo(3); // 자동차는 총 세대
         // 첫 생성시 움직인 횟수는 모두 1회
@@ -26,8 +23,6 @@ public class RacingCarTest {
     @Test
     @DisplayName("자동차 이름은 5자 이상을 초과할 수 없습니다")
     void 차이름_예외처리() {
-        assertThatThrownBy(() -> {
-            new Cars("pobi,crong,honuxx");
-        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> new Cars("pobi,crong,honuxx", 5)).isInstanceOf(RuntimeException.class);
     }
 }

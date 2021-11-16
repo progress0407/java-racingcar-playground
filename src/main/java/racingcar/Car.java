@@ -32,14 +32,17 @@ public class Car {
         }
     }
 
+    public boolean isEnd(int tryNumber) {
+        return movingCount > tryNumber;
+    }
+
     private boolean isMoving() {
         int randomNumber = getRandomNumber();
         return randomNumber == 1;
     }
 
     private int getRandomNumber() {
-        int nextInt = new Random().nextInt(2);
-        return nextInt;
+        return new Random().nextInt(2);
     }
 
     @Override

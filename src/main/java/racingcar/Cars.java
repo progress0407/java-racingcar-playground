@@ -6,14 +6,16 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    private int tryNumber;
     private List<Car> cars;
 
     public Cars() {
 
     }
 
-    public Cars(String input) {
-        cars = Arrays.stream(input.split(","))
+    public Cars(String carNames, int tryNumber) {
+        this.tryNumber = tryNumber;
+        cars = Arrays.stream(carNames.split(","))
                 .map(carName -> new Car(carName, 1))
                 .collect(Collectors.toList());
     }
@@ -27,5 +29,20 @@ public class Cars {
         for (Car car : cars) {
             car.move();
         }
+    }
+
+    public boolean isAnyEnd() {
+        for (Car car : cars) {
+            if (car.isEnd(tryNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<Car> getWinners() {
+        return cars.stream()
+                .filter(car -> car.isEnd(tryNumber))
+                .collect(Collectors.toList());
     }
 }
