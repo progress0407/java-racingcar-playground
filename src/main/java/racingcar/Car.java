@@ -1,18 +1,43 @@
 package racingcar;
 
-public class Car {
-    String name;
-    int move;
+import java.util.Random;
 
-    public Car(String name, int move) {
+public class Car {
+    private String name;
+    private int movingCount;
+
+    public Car(String name, int movingCount) {
         validateName(name);
         this.name = name;
-        this.move = move;
+        this.movingCount = movingCount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMovingCount() {
+        return movingCount;
     }
 
     private void validateName(String name) {
         if (name.length() > 5) {
             throw new RuntimeException("자동차 이름은 5자를 초과할 수 없습니다.");
         }
+    }
+
+    public void move() {
+        if (isMoving()) {
+            movingCount += 1;
+        }
+    }
+
+    private boolean isMoving() {
+        int randomNumber = getRandomNumber();
+        return randomNumber == 0;
+    }
+
+    private int getRandomNumber() {
+        return new Random().nextInt(2);
     }
 }
