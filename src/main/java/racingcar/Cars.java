@@ -16,7 +16,7 @@ public class Cars {
     public Cars(String carNames, int tryNumber) {
         this.tryNumber = tryNumber;
         cars = Arrays.stream(carNames.split(","))
-                .map(carName -> new Car(carName, 1))
+                .map(Car::new)
                 .collect(Collectors.toList());
     }
 
@@ -27,7 +27,7 @@ public class Cars {
     // 자동차를 일제히 움직인다
     public void move() {
         for (Car car : cars) {
-            car.move();
+            car.move(new RandomMovingWStrategy());
         }
     }
 

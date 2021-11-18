@@ -4,20 +4,24 @@ import java.util.Random;
 
 public class Car {
     private final String name;
-    private int movingCount;
+    private int position;
 
-    public Car(String name, int movingCount) {
+    public Car(String name) {
+        this(name, 1);
+    }
+
+    public Car(String name, int position) {
         validateName(name);
         this.name = name;
-        this.movingCount = movingCount;
+        this.position = position;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getMovingCount() {
-        return movingCount;
+    public int getPosition() {
+        return position;
     }
 
     private void validateName(String name) {
@@ -26,30 +30,22 @@ public class Car {
         }
     }
 
-    public void move() {
-        if (isMoving()) {
-            movingCount += 1;
+    public void move(MovingStrategy movingStrategy) {
+        if (movingStrategy.isMoving()) {
+            position += 1;
         }
     }
 
     public boolean isEnd(int tryNumber) {
-        return movingCount > tryNumber;
+        return position > tryNumber;
     }
 
-    private boolean isMoving() {
-        int randomNumber = getRandomNumber();
-        return randomNumber == 1;
-    }
-
-    private int getRandomNumber() {
-        return new Random().nextInt(2);
-    }
 
     @Override
     public String toString() {
         return "Car{" +
                 "name='" + name + '\'' +
-                ", movingCount=" + movingCount +
+                ", position=" + position +
                 '}';
     }
 }

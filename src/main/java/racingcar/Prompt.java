@@ -53,7 +53,7 @@ public class Prompt {
     }
 
     private void printMovingLine(Car car) {
-        int movingCount = car.getMovingCount();
+        int movingCount = car.getPosition();
         for (int i = 0; i < movingCount; i++) {
             out.print("-");
         }

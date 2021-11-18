@@ -9,6 +9,22 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class RacingCarTest {
 
     @Test
+    @DisplayName("자동차가 이동을 한다")
+    void 차_이동() {
+        Car car = new Car("foo");
+        car.move(() -> true);
+        assertThat(car.getPosition()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("자동차가 이동하지 않는다")
+    void 차_멈춤() {
+        Car car = new Car("foo");
+        car.move(() -> false);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @Test
     @DisplayName("자동차 생성 로직")
     void 자동차생성() {
         Cars cars = new Cars("pobi,crong,honux", 5);
@@ -16,10 +32,10 @@ public class RacingCarTest {
         assertThat(carsCount).isEqualTo(3); // 자동차는 총 세대
         // 첫 생성시 움직인 횟수는 모두 1회
         for (Car car : cars.getCars()) {
-            assertThat(car.getMovingCount()).isEqualTo(1);
+            assertThat(car.getPosition()).isEqualTo(1);
         }
     }
-    
+
     @Test
     @DisplayName("자동차 이름은 5자 이상을 초과할 수 없습니다")
     void 차이름_예외처리() {
