@@ -7,6 +7,7 @@ public class ApplicationMain {
         Cars cars = new Cars();
         Prompt prompt = new Prompt(cars);
         prompt.run();
-        out.println("cars.getCars() = " + cars.getCars());
+//        out.println("cars.getCars() = " + cars.getCars());
+        out.println("prompt.getCars() = " + prompt.getCars());
     }
 }

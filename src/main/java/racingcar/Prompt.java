@@ -13,6 +13,10 @@ public class Prompt {
         this.cars = cars;
     }
 
+    public Cars getCars() {
+        return cars;
+    }
+
     public void run() {
         Scanner scanner = new Scanner(System.in);
         String carNames = inputName(scanner);

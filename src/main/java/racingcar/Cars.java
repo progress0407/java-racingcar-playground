@@ -50,4 +50,12 @@ public class Cars {
                 .filter(car -> car.isEnd(tryNumber))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "tryNumber=" + tryNumber +
+                ", cars=" + cars +
+                '}';
+    }
 }
