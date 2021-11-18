@@ -1,9 +1,7 @@
 package racingcar;
 
-import java.util.Random;
-
 public class Car {
-    private final String name;
+    private final Name name;
     private int position;
 
     public Car(String name) {
@@ -11,23 +9,16 @@ public class Car {
     }
 
     public Car(String name, int position) {
-        validateName(name);
-        this.name = name;
+        this.name = new Name(name);
         this.position = position;
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 
     public int getPosition() {
         return position;
-    }
-
-    private void validateName(String name) {
-        if (name.length() > 5) {
-            throw new RuntimeException("자동차 이름은 5자를 초과할 수 없습니다.");
-        }
     }
 
     public void move(MovingStrategy movingStrategy) {
@@ -39,7 +30,6 @@ public class Car {
     public boolean isEnd(int tryNumber) {
         return position > tryNumber;
     }
-
 
     @Override
     public String toString() {
