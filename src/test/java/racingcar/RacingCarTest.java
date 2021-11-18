@@ -3,6 +3,9 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -41,11 +44,40 @@ public class RacingCarTest {
     void 차이름_예외처리() {
         assertThatThrownBy(() -> new Cars("pobi,crong,honuxx", 5)).isInstanceOf(RuntimeException.class);
     }
-    
+
     @Test
     @DisplayName("위치는 음수일 수 없습니다")
     void 위치_예외처리() {
         assertThatThrownBy(() -> new Car("philo", -1));
     }
-    
+
+    @Test
+    @DisplayName("우승자가 한명: pobi")
+    void 한명_우승자() {
+        //pobi,crong,honux
+        Car pobi = new Car("pobi", 1);
+        Car crong = new Car("crong", 1);
+        Car honux = new Car("honux", 1);
+
+        Cars cars = new Cars(new ArrayList<>(Arrays.asList(pobi, crong, honux)), 5);
+        pobi.move(5);
+        crong.move(2);
+        honux.move(3);
+        assertThat(cars.getWinners()).containsExactly(pobi);
+    }
+
+    @Test
+    @DisplayName("우승자가 여러명: pobi, honux")
+    void 여러_우승자() {
+        //pobi,crong,honux
+        Car pobi = new Car("pobi", 1);
+        Car crong = new Car("crong", 1);
+        Car honux = new Car("honux", 1);
+
+        Cars cars = new Cars(new ArrayList<>(Arrays.asList(pobi, crong, honux)), 5);
+        pobi.move(5);
+        crong.move(4);
+        honux.move(5);
+        assertThat(cars.getWinners()).containsExactly(pobi, honux);
+    }
 }

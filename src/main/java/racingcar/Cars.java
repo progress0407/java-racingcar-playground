@@ -13,11 +13,16 @@ public class Cars {
 
     }
 
-    public Cars(String carNames, int tryNumber) {
+    public Cars(List<Car> cars, int tryNumber) {
         this.tryNumber = tryNumber;
+        this.cars = cars;
+    }
+
+    public Cars(String carNames, int tryNumber) {
         cars = Arrays.stream(carNames.split(","))
                 .map(Car::new)
                 .collect(Collectors.toList());
+        this.tryNumber = tryNumber;
     }
 
     public List<Car> getCars() {

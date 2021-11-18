@@ -27,6 +27,13 @@ public class Car {
         }
     }
 
+    public void move(int movingPosition) {
+        for (int i = 0; i < movingPosition; i++) {
+            move(() -> true);
+        }
+    }
+
+
     public boolean isEnd(int tryNumber) {
         return position.getValue() > tryNumber;
     }
