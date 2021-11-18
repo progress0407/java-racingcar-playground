@@ -2,7 +2,7 @@ package racingcar;
 
 public class Car {
     private final Name name;
-    private int position;
+    private Position position;
 
     public Car(String name) {
         this(name, 1);
@@ -10,7 +10,7 @@ public class Car {
 
     public Car(String name, int position) {
         this.name = new Name(name);
-        this.position = position;
+        this.position = new Position(position);
     }
 
     public String getName() {
@@ -18,17 +18,17 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return position.getValue();
     }
 
     public void move(MovingStrategy movingStrategy) {
         if (movingStrategy.isMoving()) {
-            position += 1;
+            position.setValue(position.getValue() + 1);
         }
     }
 
     public boolean isEnd(int tryNumber) {
-        return position > tryNumber;
+        return position.getValue() > tryNumber;
     }
 
     @Override

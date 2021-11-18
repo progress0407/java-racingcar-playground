@@ -41,4 +41,11 @@ public class RacingCarTest {
     void 차이름_예외처리() {
         assertThatThrownBy(() -> new Cars("pobi,crong,honuxx", 5)).isInstanceOf(RuntimeException.class);
     }
+    
+    @Test
+    @DisplayName("위치는 음수일 수 없습니다")
+    void 위치_예외처리() {
+        assertThatThrownBy(() -> new Car("philo", -1));
+    }
+    
 }
